@@ -1,34 +1,36 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import React from 'react';
+import { Modal, Box, Typography, Button } from '@mui/material';
 
-interface KnowledgeModalProps {
+interface Props {
   open: boolean;
   onClose: () => void;
-  onAccept: () => void;
 }
 
-export const KnowledgeModal = ({ open, onClose, onAccept }: KnowledgeModalProps) => {
+export default function KnowledgeModal({ open, onClose }: Props) {
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Why We Need Your Location</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          To register a mosque, we need your current location to:
-          <ul>
-            <li>Verify the mosque's location</li>
-            <li>Help others find mosques near them</li>
-            <li>Ensure accurate prayer time calculations</li>
-          </ul>
-          We respect your privacy and only use your location for these purposes.
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="primary">
-          Cancel
+    <Modal open={open} onClose={onClose}>
+      <Box
+        sx={{
+          position: 'absolute' as const,
+          top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          bgcolor: 'background.paper',
+          p: 4, borderRadius: 1, boxShadow: 24,
+          maxWidth: 400, textAlign: 'center'
+        }}
+      >
+        <Typography variant="h6" gutterBottom>
+          Why we need your location
+        </Typography>
+        <Typography sx={{ mb: 3 }}>
+          To ensure you’re physically at the mosque when registering, we capture
+          your GPS coordinates directly from your device. This prevents
+          fraudulent or out-of-area registrations.
+        </Typography>
+        <Button variant="contained" onClick={onClose}>
+          I Understand
         </Button>
-        <Button onClick={onAccept} color="primary" variant="contained">
-          Allow Location Access
-        </Button>
-      </DialogActions>
-    </Dialog>
+      </Box>
+    </Modal>
   );
-};
+}

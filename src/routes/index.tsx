@@ -1,5 +1,6 @@
 // src/routes/index.tsx
 import { Routes, Route } from "react-router-dom";
+import React from 'react';
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import AdminRegisterPage from "../pages/AdminRegister";
